@@ -126,9 +126,6 @@ class Client(object):
             newline = Client.server_handle.stdout.readline().strip()
             content = Client.server_handle.stdout.readline().strip()
             ret = json.loads(content)
-            # TS 1.9.x returns two reload finished responses
-            if ('body', {'reloadFinished': True}) in ret.items():
-                continue
             # TS 2.0.6 introduces configFileDiag event, ignore
             if ("event", "requestCompleted") in ret.items():
                 continue
